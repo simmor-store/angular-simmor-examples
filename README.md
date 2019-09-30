@@ -1,4 +1,5 @@
 Simmor is a simple immutable boilerplate-free framework-agnostic store. 
+
 This repository is an example of how to use it with Angular.
 
 # Install
@@ -28,7 +29,7 @@ const initialState: CounterState = {
 }
 ```
 
-We can define store this class. State can be modified throw draft field. Simmor uses [immer](https://github.com/immerjs/immer) that can update immutable state by mutating it.
+We can define store class. State can be modified throw draft field. Simmor uses [immer](https://github.com/immerjs/immer) that can update immutable state by mutating it.
 
 ```ts
 @Injectable({providedIn: 'root'})
