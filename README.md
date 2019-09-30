@@ -1,5 +1,7 @@
 Simmor is a simple immutable boilerplate-free framework-agnostic store. 
 
+[https://github.com/simmor-store/simmor](https://github.com/simmor-store/simmor)
+
 This repository is an example of how to use it with Angular.
 
 # Install
