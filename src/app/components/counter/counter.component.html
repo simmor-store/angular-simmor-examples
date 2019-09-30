@@ -1,0 +1,7 @@
+<div *ngIf="store.state$ | async as state" class="counter">
+  <span>{{state.value}}</span>
+  <button (click)="store.increase()">+</button>
+  <button (click)="store.decrease()">-</button>
+  <button (click)="store.setValue(0)">Reset</button>
+  <button (click)="store.setValueAsync()">Set value async</button>
+</div>
