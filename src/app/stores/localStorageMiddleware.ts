@@ -1,15 +1,15 @@
-import {Middleware} from 'simmor';
+import {Middleware} from "simmor"
 
-export function createLocalStorageMiddleware(name: string): Middleware {
+export function createLocalStorageMiddleware(key: string): Middleware {
   return next => action => {
-    const result = next(action)
-    if (action.methodName === 'constructor') {
-      const savedState = localStorage.getItem(name)
+    const newState = next(action)
+    if (action.methodName === "constructor") {
+      const savedState = localStorage.getItem(key)
       if (savedState) {
-        action.context.rxState.setState(JSON.parse(savedState));
+        return JSON.parse(savedState)
       }
     }
-    localStorage.setItem(name, JSON.stringify(action.context.rxState.state))
-    return result;
-  };
+    localStorage.setItem(key, JSON.stringify(newState))
+    return newState
+  }
 }
