@@ -31,7 +31,7 @@ const initialState: CounterState = {
 }
 ```
 
-We can define store class. State can be modified throw draft field. Simmor uses [immer](https://github.com/immerjs/immer) that can update immutable state by mutating it.
+We can define a store class. State can be modified throw `draft` field. Simmor uses [immer](https://github.com/immerjs/immer) that can update immutable state by mutating it.
 
 ```ts
 @Injectable({providedIn: 'root'})
@@ -97,19 +97,20 @@ export class CounterComponent implements OnInit {
 # Middlewares
 Simmor supports middlewares. Here an example of middleware that saves state to localStorage.
 ```ts
-export function createLocalStorageMiddleware(name: string): Middleware {
+export function createLocalStorageMiddleware(key: string): Middleware {
   return next => action => {
-    const result = next(action)
+    const newState = next(action)
     if (action.methodName === "constructor") {
-      const savedState = localStorage.getItem(name)
+      const savedState = localStorage.getItem(key)
       if (savedState) {
-        action.context.rxState.setState(JSON.parse(savedState))
+        return JSON.parse(savedState)
       }
     }
-    localStorage.setItem(name, JSON.stringify(action.context.rxState.state))
-    return result
+    localStorage.setItem(key, JSON.stringify(newState))
+    return newState
   }
 }
+
 ```
 
 We can pass middlewares in the constructor of the store and our component can now save its state between sessions.
