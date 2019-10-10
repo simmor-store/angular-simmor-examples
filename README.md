@@ -21,7 +21,7 @@ export class CounterService {
 }
 ```
 And we want to create a store with state like this
-```
+```ts
 export interface CounterState {
   value: number;
 }
